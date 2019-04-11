@@ -1,3 +1,8 @@
 {
-    "presets": ["flow"]
+  "presets": ["env", "stage-2"],
+  "env": {
+    "production": {
+      "plugins": ["transform-remove-console"]
+    }
   }
+}
