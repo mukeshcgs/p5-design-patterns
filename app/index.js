@@ -7,7 +7,7 @@ import "styles/index.scss";
 import p5 from "p5";
 import dat from "dat.gui";
 import Stats from "stats-js";
-import { hexagon, hexagonLine } from './helper'
+import { hexagon, hexagonLine, squareLine } from './helper'
 
 // import { Layers, Circle } from './Layers'
 // ================================
@@ -165,7 +165,8 @@ const sketch = p5 => {
       for (let i = 0; i < numbShapes * 2; i++) {
         p5.stroke(getRandomFromPallate())
         p5.strokeWeight(0.5)
-        hexagonLine(0, 0, p5.floor(p5.random(1, CRYSTAL_SIZE)))
+        // hexagonLine(0, 0, p5.floor(p5.random(1, CRYSTAL_SIZE)))
+        squareLine(0, 0, p5.floor(p5.random(1, CRYSTAL_SIZE)))
         // p5.ellipse(0, 0, p5.floor(p5.random(0, CRYSTAL_SIZE)), CRYSTAL_SIZE)
       }
 

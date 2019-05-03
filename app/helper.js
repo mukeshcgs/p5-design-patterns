@@ -8,6 +8,18 @@ export function hexagonLine(posX, posY, radius) {
     }
     p5.endShape(p5.CLOSE)
 }
+
+// Square Line
+export function squareLine(posX, posY, radius) {
+    const rotAngle = p5.TWO_PI / 4
+    p5.beginShape();
+    for (let i = 0; i < 6; i++) {
+        const thisVertex = pointOnCircle(posX, posY, radius, i * rotAngle);
+        p5.vertex(thisVertex.x, thisVertex.y)
+    }
+    p5.endShape(p5.CLOSE)
+}
+
 // Hexagone
 function hexagon(posX, posY, radius) {
     const rotAngle = p5.TWO_PI / 6
