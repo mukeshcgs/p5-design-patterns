@@ -1,29 +1,29 @@
 import p5 from "p5";
-c =
-    class Layers {
-        constructor() {
-            const CRYSTAL_SIZE = 400;
-            const SIDES = 6
-            let PALLETTE = [
-                p5.color(255, 52, 154),
-                p5.color(4, 0, 152)
-            ]
 
-            this.sides = SIDES;
-            this.numShapes = this.sides
-            this.angle = p5.TOW_PI / this.numShapes
-            this.stepOut = 8
-            // this.singleStep(CRYSTAL_SIZE / 2) / this.stepOut
-            this.thinStrok = 1
-            this.thickStrok = 3
-            this.strokeColor = this.getRandomFromPallate()
+class Layers {
+    constructor() {
+        const CRYSTAL_SIZE = 400;
+        const SIDES = 6
+        let PALLETTE = [
+            p5.color(255, 52, 154),
+            p5.color(4, 0, 152)
+        ]
 
-        }
-        getRandomFromPallate() {
-            const rando2 = p5.floor(p5.random(0, PALLETTE.length))
-            return PALLETTE[rando2]
-        }
+        this.sides = SIDES;
+        this.numShapes = this.sides
+        this.angle = p5.TOW_PI / this.numShapes
+        this.stepOut = 8
+        // this.singleStep(CRYSTAL_SIZE / 2) / this.stepOut
+        this.thinStrok = 1
+        this.thickStrok = 3
+        this.strokeColor = this.getRandomFromPallate()
+
     }
+    getRandomFromPallate() {
+        const rando2 = p5.floor(p5.random(0, PALLETTE.length))
+        return PALLETTE[rando2]
+    }
+}
 export class Circle extends Layers {
     constructor() {
         super()
