@@ -36,7 +36,7 @@ export class Circle extends Layers {
         p5.strokeWeight(1)
         p5.push()
         p5.translate(canvasWidth / 2, canvasHeight / 2);
-        for (let i = 0; i < this.numbShapes; i++) {
+        for (let i = 0; i < this.numShapes; i++) {
             p5.ellipse(this.position, 0, this.shapeSize, this.shapeSize)
             p5.rotate(this.angle)
         }
