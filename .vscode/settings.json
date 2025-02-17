@@ -8,5 +8,21 @@
         "node_modules": true // this excludes the folder 
         // only from the root of
         // your workspace 
-    }
+    },
+    // settings for webgl + glsl extensions
+    "glsl-canvas.refreshOnChange": false,
+    // "workbench.colorTheme": "Visual Studio Dark"
+    "webgl-glsl-editor.format.placeSpaceAfterKeywords": true,
+    "[glsl]": {
+        "editor.inlayHints.enabled": "off",
+        "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+    }, 
+    "[frag]": {
+        "editor.inlayHints.enabled": "off",
+        "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+    }, 
+    "[vert]": {
+        "editor.inlayHints.enabled": "off",
+        "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+    }, 
 }

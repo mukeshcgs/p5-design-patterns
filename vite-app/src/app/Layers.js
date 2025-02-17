@@ -5,9 +5,13 @@ class Layers {
         this.CRYSTAL_SIZE = 400;
         const SIDES = 6
         this.PALLETTE = [
-            p5.color(255, 52, 154),
-            p5.color(4, 0, 152)
-        ]
+            // p5.color(255, 52, 154),
+            // p5.color(4, 0, 152)
+            // p5.color(44, 57, 48),
+            p5.color(63, 79, 68),
+            p5.color(162, 123, 92),
+            p5.color(220, 215, 201)
+          ]
         this.sides = SIDES;
         this.numShapes = this.sides
         this.angle = window.p5.TWO_PI / this.numShapes

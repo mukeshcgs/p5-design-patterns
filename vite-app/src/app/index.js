@@ -45,17 +45,31 @@ const sketch = p5 => {
   const CRYSTAL_SIZE = 400;
   const SIDES = 6
   let PALLETTE = [
-    p5.color(255, 52, 154),
-    p5.color(4, 0, 152)
+    // p5.color(255, 52, 154),
+    // p5.color(4, 0, 152)
+    // p5.color(44, 57, 48),
+    p5.color(63, 79, 68),
+    p5.color(162, 123, 92),
+    p5.color(220, 215, 201)
   ]
+
+  let exampleShader;
+
+  //load in the shader
+  function preload() {
+    exampleShader = p5.loadShader('./shaders/example.vert', './shaders/example.frag')
+  }
 
   // Setup function
   // ======================================
   p5.setup = () => {
-    let canvas = p5.createCanvas(canvasWidth, canvasHeight);
+    let canvas = p5.createCanvas(canvasWidth, canvasHeight, this.WEBGL);
+    p5.background(44, 57, 48);
     p5.noLoop()
     p5.angleMode(p5.DEGREE)
     p5.rectMode(p5.CENTER)
+    //tell p5 to use the shader
+    p5.shader(exampleShader);
   };
 
   // Draw function
@@ -65,6 +79,7 @@ const sketch = p5 => {
     // outlineShape()
     // simpleLinesLoc()
     // tron()
+
     const circles = new Circles()
     circles.render()
 
@@ -75,7 +90,7 @@ const sketch = p5 => {
     steppedHexagons.render()
 
     const dottedLines = new DottedLines()
-    dottedLines.render()
+    // dottedLines.render()
   }
   //Circle
   // function circle() { }

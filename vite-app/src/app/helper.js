@@ -44,6 +44,3 @@ export function squareLine(posX, posY, radius) {
     }
     p5.endShape(p5.CLOSE)
 }
-
-
-
