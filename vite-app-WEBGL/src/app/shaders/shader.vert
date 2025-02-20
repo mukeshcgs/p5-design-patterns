@@ -17,8 +17,8 @@ vec2 noise2x2(vec2 p) {
 }
 
 void main() {
-    vec2 uv = gl_FragCoord.xy / u_resolution;
-    // uv = gl_FragCoord.xy / u_resolution;
+    // vec2 uv = gl_FragCoord.xy / u_resolution;
+    uv = gl_FragCoord.xy / u_resolution;
 
     vec3 black = vec3(0.);
     vec3 white = vec3(1.);

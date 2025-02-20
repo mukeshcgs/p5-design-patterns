@@ -7,7 +7,7 @@ import "styles/index.scss";
 import p5 from "p5";
 import dat from "dat.gui";
 import Stats from "stats-js";
-import { hexagon, hexagonLine, squareLine } from './helper'
+import { hexagon, hexagonLine, randomSelectTwo, squareLine } from './helper'
 // import { Layers, Circle } from './Layers'
 // ================================
 // START YOUR APP HERE
