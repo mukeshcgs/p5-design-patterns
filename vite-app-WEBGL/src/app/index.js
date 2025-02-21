@@ -8,8 +8,18 @@ import p5 from "p5";
 import dat from "dat.gui";
 import Stats from "stats-js";
 import { hexagon, hexagonLine, randomSelectTwo, squareLine } from './helper'
-import vertexShader from "./shaders/example.vert";
-import fragmentShader from "./shaders/example.frag";
+import vertexShader from "./shaders/vertex.vert";
+import fragmentShader from "./shaders/fragment.frag";
+import bgImg from "./img/logo.png";
+
+// import vertexShader from "./shaders/line/shader.vert";
+// import fragmentShader from "./shaders/line/shader.frag";
+
+// import vertexShader from "./shaders/sinwave/shader.vert";
+// import fragmentShader from "./shaders/sinwave/shader.frag";
+
+import { drawLine } from "./shape/Line";
+import { sinWave } from "./shape/sineWave";
 
 // =======================================
 // START YOUR APP HERE
@@ -32,20 +42,23 @@ import fragmentShader from "./shaders/example.frag";
 // ----------------------------------------
 
 const sketch = p5 => {
+  // make library globally available
+  window.p5 = p5;
+
   // Variables scoped within p5
   const canvasWidth = p5.windowWidth;
   const canvasHeight = p5.windowHeight;
-
-  // make library globally available
-  window.p5 = p5;
   let myShader;
+  let bgImage;
 
   //load in the shader
   p5.preload = () => {
     myShader = p5.createShader(vertexShader, fragmentShader);
-    // myShader = p5.loadShader('/shaders/example.vert', '/shaders/example.frag');
-    // myShader = p5.loadShader('/shaders/vert.glsl', '/shaders/frag.glsl')
+    bgImage = p5.loadImage('./img/logo.png');
+    // bgImage = p5.loadImage(bgImg);
   }
+  console.log(bgImage);
+  
   //Sketch Variables
   const CRYSTAL_SIZE = 400;
   const SIDES = 6
@@ -57,50 +70,52 @@ const sketch = p5 => {
     // p5.color(0, 0, 0),
     // p5.color(220, 215, 201)
   ]
- 
+
   // Setup function
   // ======================================
   p5.setup = () => {
     let canvas = p5.createCanvas(canvasWidth, canvasHeight, p5.WEBGL);
-    // p5.shader(myShader);
-    // p5.background(44, 57, 48);
-    p5.noLoop()
-    p5.angleMode(p5.DEGREE)
-    p5.rectMode(p5.CENTER)
-    //tell p5 to use the shader
+    // let canvas = p5.createCanvas(400, 400, p5.WEBGL);
+    p5.background(44, 57, 48);
+    // p5.noLoop()
+    // p5.noStroke();
+    // p5.angleMode(p5.DEGREE)
+    // p5.rectMode(p5.CENTER)
+
+    // set variable to use in shader
+    myShader.setUniform('background', bgImage);
+
   };
 
   // Draw function
   // ======================================
   p5.draw = () => {
+    p5.clear()
+    // p5.background(44, 57, 48);
+    // p5.background(255);
     p5.shader(myShader);
-    
+
+    // Pass the time and resolution to the shader
     // Pass the time from p5 to the shader
-    // myShader.setUniform('time', p5.millis());
+    myShader.setUniform('millis', p5.millis());
+    // myShader.setUniform('u_time', p5.millis() / 1000.0);
+    myShader.setUniform('u_resolution', [p5.width, p5.height]);
+    // myShader.setUniform('u_mouse', [p5.mouseX - p5.width / 2, p5.mouseY - p5.height / 2]);
+
     // Draw a shape using the shader
-    
-    // p5.rect(-p5.canvasWidth / 2, -p5.canvasHeight / 2, p5.canvasWidth, p5.canvasHeight); // Cover the canvas
-    myShader.setUniform("uResolution", [p5.width, p5.height]);
-    // myShader.setUniform("uTime", p5.millis() / 1000.0); // Time in seconds
-    // p5.shader(myShader);
-    // p5.plane(100, 100); 
-    // p5.circle(0, 0, 100);
-    p5.rect(-p5.width, -p5.height, p5.width, p5.height); // Cover the canvas
-    // p5.rect(-p5.width / 2, -p5.height / 2, p5.width, p5.height); // Cover the canvas
-    // tron()
+    // p5.rect(0, 0, 400, 400);
+    // p5.ellipse(0, 0, 200, 200, 150);
+
+    // drawline
+    // drawLine();
+
+    //sine wave
+    // sinWave();
+    // render tron effect
+    // tron() 
   }
 
 
-
-  // //Helper Random 1 or 2 for Spoke count
-  // function randomSelectTwo() {
-  //   const rando = p5.random(1)
-  //   if (rando > 0.5) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
 
   //Helper Random Color
   function getRandomFromPallate() {
