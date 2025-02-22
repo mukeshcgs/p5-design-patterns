@@ -11,6 +11,7 @@ import { hexagon, hexagonLine, randomSelectTwo, squareLine } from './helper'
 import vertexShader from "./shaders/vertex.vert";
 import fragmentShader from "./shaders/fragment.frag";
 import Img from "./img/texture.png";
+import Img_2 from "./img/texture2.png";
 
 // import vertexShader from "./shaders/line/shader.vert";
 // import fragmentShader from "./shaders/line/shader.frag";
@@ -50,14 +51,16 @@ const sketch = p5 => {
   const canvasHeight = p5.windowHeight;
   let myShader;
   let bgImage;
+  let bgImage_2;
 
   //load in the shader
   p5.preload = () => {
     myShader = p5.createShader(vertexShader, fragmentShader);
     bgImage = p5.loadImage(Img);
+    bgImage_2 = p5.loadImage(Img_2);
   }
   console.log(bgImage);
-  
+
   //Sketch Variables
   const CRYSTAL_SIZE = 400;
   const SIDES = 6
@@ -82,31 +85,42 @@ const sketch = p5 => {
     // p5.rectMode(p5.CENTER)
 
   };
-  
+
   // Draw function
   // ======================================
   p5.draw = () => {
     p5.clear()
     // p5.background(44, 57, 48);
-    // p5.background(255);
     p5.shader(myShader);
-    
+
     // Pass the time, texture and resolution to the shader
     // Pass the time from p5 to the shader
     myShader.setUniform('millis', p5.millis());
 
-    // set variable to use in shader
-    myShader.setUniform('uTexture', bgImage);
-    
+
     // myShader.setUniform('u_time', p5.millis() / 1000.0);
     myShader.setUniform('u_resolution', [p5.width, p5.height]);
     // myShader.setUniform('u_mouse', [p5.mouseX - p5.width / 2, p5.mouseY - p5.height / 2]);
 
+    // set variable to use in shader
+    myShader.setUniform('uTexture', bgImage);
+    myShader.setUniform("uUseTexture", true); // Indicate we're using a texture
     // Draw a shape using the shader
-    // p5.rect(0, 0, 400, 400);
-    // p5.plane(300)
+    p5.push();
+    p5.rect(0, 0, 400, 400);
+    p5.pop();
+    
+    myShader.setUniform('uTexture', bgImage_2);
+    myShader.setUniform("uUseTexture", true); // Indicate we're using a texture
+    p5.push();
     p5.ellipse(0, 0, 200, 200, 150);
-
+    p5.pop();
+    
+    myShader.setUniform("uUseTexture", false); // Indicate we're using a texture
+    p5.push();
+    p5.plane(100)
+    p5.pop();
+    
     // drawline
     // drawLine();
 
