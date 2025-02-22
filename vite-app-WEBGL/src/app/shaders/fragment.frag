@@ -7,9 +7,11 @@ uniform vec2 u_resolution;  // Canvas size (width,height)
 uniform vec2 u_mouse;       // mouse position in screen pixels
 uniform float u_time;       // Time in seconds since load
 uniform float millis;       // Time in seconds since load
-uniform sampler2D background;  // Image as texture
+uniform sampler2D uTexture;  // Image as texture
 // get this from vertex file
 varying vec2 pos;
+varying vec2 vTexCoord;
+
 
 void main() {
   //singlw color
@@ -36,11 +38,12 @@ void main() {
   // sine wave
   // float sinColor = sin(pos.x * 16.);
   // float sinColor = (sin(pos.x * 16.)+1.)/2.;
-  // float sinColor = (sin(pos.x * 16. + millis / 1000.) + 1.) / 2.;
-  // gl_FragColor = vec4(sinColor, 0., 1., 1.);
+  float sinColor = (sin(pos.x * 16. + millis / 1000.) + 1.) / 2.;
+  gl_FragColor = vec4(sinColor, 0., 1., 1.);
 
-  vec4 col = texture2D(background, pos);
-  gl_FragColor = vec4(col);
+  // vec2 pos = vTexCoord;
+  vec4 texColor = texture2D(uTexture, pos);
+  gl_FragColor = vec4(texColor);
 
 ///////////////////////////////////////////////////////////////////
   // // vec2 uv = gl_FragCoord.xy / u_resolution.xy * 2.0 / 1.0;
