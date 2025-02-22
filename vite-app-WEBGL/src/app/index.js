@@ -103,22 +103,25 @@ const sketch = p5 => {
     // myShader.setUniform('u_mouse', [p5.mouseX - p5.width / 2, p5.mouseY - p5.height / 2]);
 
     // set variable to use in shader
-    myShader.setUniform('uTexture', bgImage);
-    myShader.setUniform("uUseTexture", true); // Indicate we're using a texture
+    myShader.setUniform('u_Texture', bgImage);
+    myShader.setUniform("u_UseTexture", true); // Indicate we're using a texture
     // Draw a shape using the shader
     p5.push();
     p5.rect(0, 0, 400, 400);
     p5.pop();
     
-    myShader.setUniform('uTexture', bgImage_2);
-    myShader.setUniform("uUseTexture", true); // Indicate we're using a texture
+    myShader.setUniform('u_Texture', bgImage_2);
+    myShader.setUniform("u_UseTexture", true); // Indicate we're using a texture
     p5.push();
     p5.ellipse(0, 0, 200, 200, 150);
     p5.pop();
     
-    myShader.setUniform("uUseTexture", false); // Indicate we're using a texture
+    myShader.setUniform("u_UseTexture", false); // Indicate we're using a texture
     p5.push();
-    p5.plane(100)
+    // p5.plane(100)
+    p5.translate(-200, 0); // Position the line
+    p5.rotateZ(p5.PI / 6); // Optional: Rotate the line
+    p5.rect(-2, -200, 4, 400); // A thin rectangle to simulate a line
     p5.pop();
     
     // drawline
