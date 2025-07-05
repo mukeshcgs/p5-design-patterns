@@ -1,6 +1,6 @@
 precision highp float;
 uniform mat4 uModelViewMatrix;
-uniform mat4 uProjectionMatrix;
+uniform mat4 uProjectionMatrix; 
 
 attribute vec3 aPosition; //world position of vertex
 attribute vec2 aTexCoord; //holds coordinates of texture
