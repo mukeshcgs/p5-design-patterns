@@ -1,27 +1,29 @@
-import { hexagon, randomSelectTwo } from './helper';
+import { hexagon } from './helper';
 import Layers from './Layers';
 
 class SteppedHexagons extends Layers {
-    constructor() {
-        super()
-        this.stepsOut = 8
-        this.numSteps = this.randomSelectTwo ? this.stepsOut : this.stepsOut * 1.25
-        this.centerOffset = (this.CRYSTAL_SIZE / 2) * 0.15
-        this.singleStep = ((this.CRYSTAL_SIZE / 2) - this.centerOffset) / this.numSteps
-        this.weight = this.randomSelectTwo ? 1 : 3
+    constructor(p, palette) {
+        super(p, palette);
+        this.stepsOut = 8;
+        this.numSteps = this.randomSelectTwo() ? this.stepsOut : Math.floor(this.stepsOut * 1.25);
+        this.centerOffset = (this.CRYSTAL_SIZE / 2) * 0.15;
+        this.singleStep = ((this.CRYSTAL_SIZE / 2) - this.centerOffset) / this.numSteps;
+        this.weight = this.randomSelectTwo() ? this.thinStroke : this.thickStroke;
     }
+
     render() {
-        p5.noFill()
-        p5.stroke(this.strokeColor)
-        p5.strokeWeight(this.weight)
-        p5.push()
-        p5.translate(this.canvasWidth / 2, this.canvasHeight / 2);
-        p5.rotate(this.angle / 2)
+        const p = this.p;
+        p.noFill();
+        p.stroke(this.strokeColor);
+        p.strokeWeight(this.weight);
+        p.push();
+        p.translate(p.width / 2, p.height / 2);
+        p.rotate(this.angle / 2);
         for (let i = 0; i < this.numShapes; i++) {
-            hexagon(0, 0, this.centerOffset + (i * this.singleStep))
+            hexagon(p, 0, 0, this.centerOffset + (i * this.singleStep));
         }
-        p5.pop()
+        p.pop();
     }
 }
 
-export default SteppedHexagons 
+export default SteppedHexagons;

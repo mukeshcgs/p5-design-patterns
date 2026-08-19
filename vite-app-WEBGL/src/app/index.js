@@ -125,7 +125,7 @@ const sketch = p5 => {
     p5.pop();
     
     // drawline
-    // drawLine();
+    drawLine();
 
     //sine wave
     // sinWave();

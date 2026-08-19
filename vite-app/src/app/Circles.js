@@ -1,25 +1,25 @@
 import Layers from './Layers';
 
 class Circles extends Layers {
-    constructor() {
-        super()
-        this.shapeSize = (this.CRYSTAL_SIZE / 2) * 0.93
-        this.position = (this.CRYSTAL_SIZE / 2) - (this.shapeSize / 2)
+    constructor(p, palette) {
+        super(p, palette);
+        this.shapeSize = (this.CRYSTAL_SIZE / 2) * 0.93;
+        this.position = (this.CRYSTAL_SIZE / 2) - (this.shapeSize / 2);
     }
+
     render() {
-        console.log(this.shapeSize);
-        
-        p5.noFill()
-        p5.stroke(this.strokeColor)
-        p5.strokeWeight(1)
-        p5.push()
-        p5.translate(this.canvasWidth / 2, this.canvasHeight / 2);
+        const p = this.p;
+        p.noFill();
+        p.stroke(this.strokeColor);
+        p.strokeWeight(this.thinStroke);
+        p.push();
+        p.translate(p.width / 2, p.height / 2);
         for (let i = 0; i < this.numShapes; i++) {
-            p5.ellipse(this.position, 0, this.shapeSize, this.shapeSize)
-            p5.rotate(this.angle)
+            p.ellipse(this.position, 0, this.shapeSize, this.shapeSize);
+            p.rotate(this.angle);
         }
-        p5.pop()
+        p.pop();
     }
 }
 
-export default Circles
+export default Circles;
